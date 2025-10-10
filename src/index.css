@@ -1,0 +1,91 @@
+/* Import Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Global Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #111111;
+    color: #EAEAEA;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+* {
+  cursor: none !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #111;
+}
+::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #6a6a6a;
+}
+
+/* Three.js Canvas */
+#fluid-canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    max-height: 600px;
+    z-index: 0;
+}
+
+/* Project Card Layout */
+.project-card {
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-image-container {
+    cursor: pointer;
+}
+
+/* Base styles for Embla Carousel */
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+  height: 100%;
+}
+.embla__slide {
+  /* This allows each slide to have its own width */
+  flex: 0 0 auto; 
+  min-width: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* This adds the thin vertical separator line between slides */
+.embla__slide:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -0.5px; /* Position it exactly between slides */
+  top: 10%;
+  bottom: 10%;
+  width: 1px;
+  background-color: #e5e7eb; 
+  z-index: 10;
+}
