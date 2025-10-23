@@ -1,18 +1,22 @@
-import React, { useRef, Suspense, useLayoutEffect } from 'react'; 
+import React, { useRef, Suspense, useEffect, useState } from 'react'; // Import useEffect and useState
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Center } from '@react-three/drei';
-import { Model as SkrillexModel } from './Skrillex.jsx'; 
+// Correct the import path to match your file name 'Skrillex_.jsx'
+import { Model as SkrillexModel } from './Skrillex_.jsx'; 
 import { animate } from 'framer-motion'; 
-import { useInView } from 'framer-motion'; // Import useInView
+import { useInView } from 'framer-motion'; 
 
 function Scene() {
   const groupRef = useRef();
+  // Add a state to track if the model has loaded
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  // Use useLayoutEffect for DOM-synchronous operations like initial setup
-  useLayoutEffect(() => {
+  // We use useEffect now, and it will re-run when isLoaded changes
+  useEffect(() => {
     let animationControls;
-    // Check if the ref is populated (model is mounted and rendered)
-    if (groupRef.current) {
+
+    // Only run the animation IF the model is loaded and the ref is available
+    if (isLoaded && groupRef.current) {
         // Set initial state: invisible and ready for animation
         groupRef.current.traverse((child) => {
             if (child.isMesh) {
@@ -32,7 +36,7 @@ function Scene() {
             duration: 1.2, 
             delay: 0.5, // Sync with name animation
             onUpdate: (latest) => {
-                // Check ref again inside animation loop (important!)
+                // Check ref again inside animation loop
                 if (groupRef.current) { 
                     groupRef.current.traverse((child) => {
                         if (child.isMesh) {
@@ -45,12 +49,12 @@ function Scene() {
     }
     // Cleanup function to stop animation if the component unmounts
     return () => animationControls?.stop();
-  }, []); // Empty dependency array ensures this runs once after mount and layout
+  }, [isLoaded]); // <-- Dependency array: This effect runs when isLoaded becomes true
 
   // This hook handles the continuous rotation and mouse interaction
   useFrame((state, delta) => {
-    // No need to check isInView here anymore, as the entire render loop is paused
-    if (groupRef.current) {
+    // Only animate if the model is loaded
+    if (isLoaded && groupRef.current) {
       const autoRotationY = state.clock.getElapsedTime() * 0.1;
       const targetRotationY = autoRotationY + state.mouse.x * 2;
       const targetRotationX = state.mouse.y * -0.6;
@@ -72,10 +76,11 @@ function Scene() {
         scale={0.0001} 
         position={[0, 0.5, 0]} 
         rotation={[-0.1, 0.4, 0]}
-        visible={false} // Start invisible, effect makes it visible
+        visible={false} // Start invisible, effect will make it visible
       >
         <Center>
-          <SkrillexModel /> 
+          {/* Pass the onLoad callback to set our state */}
+          <SkrillexModel onLoad={() => setIsLoaded(true)} /> 
         </Center>
       </group>
     </Suspense>
@@ -85,7 +90,6 @@ function Scene() {
 export default function HeroCanvas() {
    const containerRef = useRef();
    // Check if the container itself is in view. 
-   // Adjust margin for smoother start/stop, e.g., trigger when 200px away.
    const isInView = useInView(containerRef, { margin: "200px 0px 200px 0px", once: false });
 
   return (
