@@ -233,14 +233,14 @@ const ProjectsSection = ({ onProjectClick }) => {
 };
 
 const AboutMeSection = ({ onContactClick }) => (
-  <section className="max-w-[85%] mx-auto min-h-screen flex flex-col md:flex-row items-center justify-center gap-6 md:gap-16 py-16 px-4 md:px-16 text-black">
+  <section className="max-w-[85%] mx-auto min-h-screen flex flex-col md:flex-row items-center justify-center gap-6 md:gap-16 py-0 px-4 md:px-16 text-black">
     {/* --- Image --- */}
     <motion.div
       initial={{ x: -50, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
       viewport={{ once: true, amount: 0.5 }}
       transition={{ delay: 0.2, duration: 0.8 }}
-      className="w-full max-w-[240px] sm:max-w-xs md:w-2/5 lg:w-1/4 md:max-w-md flex-shrink-0"
+      className="w-full max-w-[200px] sm:max-w-xs md:w-2/5 lg:w-1/4 md:max-w-md flex-shrink-0"
     >
       <div className="w-full aspect-[3/4] rounded-xl overflow-hidden bg-gray-200 shadow-sm">
         <img
@@ -257,7 +257,7 @@ const AboutMeSection = ({ onContactClick }) => (
       whileInView={{ x: 0, opacity: 1 }}
       viewport={{ once: true, amount: 0.5 }}
       transition={{ delay: 0.4, duration: 0.5 }}
-      className="w-full md:w-3/5 lg:w-2/3 text-center md:text-left mt-6 md:mt-0 flex flex-col items-center md:items-start"
+      className="w-full md:w-3/5 lg:w-2/3 text-center md:text-left mt-0 mb-0 md:mt-0 flex flex-col items-center md:items-start"
     >
       <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-4 md:mb-6">
         About Me
@@ -274,7 +274,7 @@ const AboutMeSection = ({ onContactClick }) => (
 
       <button
         onClick={onContactClick}
-        className="button1 py-3 px-6 mt-6 sm:mt-8 mb-10 sm:mb-12 text-base sm:text-lg rounded-lg bg-white transition-all duration-300 cursor-pointer"
+        className="button1 py-3 px-6 mt-6 sm:mt-8 mb-0 sm:mb-1 text-base sm:text-lg rounded-lg bg-white transition-all duration-300 cursor-pointer"
       >
         Contact Me
       </button>

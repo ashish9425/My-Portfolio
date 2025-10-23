@@ -47,7 +47,7 @@ const ProjectCarousel = forwardRef(({ gallery }, ref) => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="absolute inset-0 backdrop-blur-xl"
+                      className="absolute inset-0 bg-white/80"
                     />
                   )}
                 </AnimatePresence>
