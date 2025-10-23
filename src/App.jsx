@@ -8,7 +8,7 @@ import { cn } from './lib/utils';
 import Lenis from 'lenis';
 import HeroCanvas from './components/HeroCanvas'; 
 import ProjectCarousel from './components/ProjectCarousel'; // Import the new carousel
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 
 // Import Images
 import SkateScooter from './components/SkateScooter2_4.png';
