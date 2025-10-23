@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Protofo','Inter', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
       },
       animation: {
         aurora: 'aurora 8s ease-in-out infinite',
