@@ -8,6 +8,7 @@ import { cn } from './lib/utils';
 import Lenis from 'lenis';
 import HeroCanvas from './components/HeroCanvas'; 
 import ProjectCarousel from './components/ProjectCarousel'; // Import the new carousel
+import { Analytics } from "@vercel/analytics/next"
 
 // Import Images
 import SkateScooter from './components/SkateScooter2_4.png';
@@ -303,6 +304,7 @@ function App() {
     return (
         <div className="bg-white font-sans min-h-screen w-screen overflow-x-hidden relative">
              <ScrollProgress />
+             <Analytics/>
              <GridBackground>
                 <Header 
                     onContactClick={() => setIsContactOpen(true)} 
